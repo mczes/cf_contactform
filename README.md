@@ -73,3 +73,19 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Deploy on Cloudflare Pages
+
+```bash
+# Install Wrangler CLI globally if you haven't already
+npm install -g wrangler
+
+# Login to Cloudflare (will open browser for authentication)
+wrangler login
+
+# Build your Nuxt app for production
+npm run build
+
+# Deploy to Cloudflare Pages
+# Note: First deployment creates the project
+wrangler pages deploy .output/public/

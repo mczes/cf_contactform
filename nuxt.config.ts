@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     public: {
       receiverEmail: process.env.NUXT_RECEIVER_EMAIL,
       senderEmail: process.env.NUXT_SENDER_EMAIL,
-      apiEndpoint: process.env.NUXT_API_ENDPOINT,
+      apiEndpoint: 'https://your-project-name.pages.dev/api/contact'
     },
   },
 })

@@ -10,7 +10,6 @@ account_id = "1ec5c1080c7b333a86aeffc30ce4f17d"
 # Set to false for production deployment on Cloudflare Pages
 workers_dev = false
 
-
 [vars]
 # Set this to the email address that should receive the contact form submissions
 RECEIVER_EMAIL = "${RECEIVER_EMAIL}"
@@ -21,14 +20,25 @@ SENDER_EMAIL = "${SENDER_EMAIL}"
 # The route for your API endpoint
 route = "https://cf-contactform.pages.dev/api/contact"
 
-
-# The zone ID needed for your domain on Cloudflare
-# Example: zone_id = "023e105f4ecef8ad9ca31a8372d0c353"#zone_id = "your_zone_id"
-
 main = "worker.js"
 
-#[[kv_namespaces]]
-#binding = "RATE_LIMIT"
-#id = "your-kv-namespace-id"
-
 compatibility_date = "2023-05-18"
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "service-worker"
+
+[site]
+bucket = ".output/public"
+entry-point = "worker.js"
+
+# Add this new section for Pages configuration
+[pages]
+pages_build_output_dir = ".output/public"
+
+[env.production]
+routes = [
+  { pattern = "/api/contact", script = "worker.js" }
+]

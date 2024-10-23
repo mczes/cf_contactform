@@ -6,4 +6,11 @@ export default defineNuxtConfig({
     preset: 'cloudflare-pages'
   },
   modules: ['@nuxtjs/tailwindcss'],
+  runtimeConfig: {
+    public: {
+      receiverEmail: process.env.NUXT_RECEIVER_EMAIL,
+      senderEmail: process.env.NUXT_SENDER_EMAIL,
+      apiEndpoint: process.env.NUXT_API_ENDPOINT,
+    },
+  },
 })
